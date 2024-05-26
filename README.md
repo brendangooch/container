@@ -1,2 +1,2 @@
 # container
-a simple package that resizes a div on screen resize or device rotate and maintains the aspect ratio.
+a simple div that resizes on screen resize or rotate and maintains its aspect ratio

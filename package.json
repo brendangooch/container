@@ -1,0 +1,44 @@
+{
+  "name": "@brendangooch/container",
+  "version": "1.0.0",
+  "description": "a simple div that resizes on screen resize or rotate and maintains its aspect ratio",
+  "author": "B Gooch <brendangooch@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rm -rf lib",
+    "prepublish": "npm build",
+    "prepack": "npm build",
+    "build": "npm run clean & tsc"
+  },
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "exports": {
+    ".": "./lib/container.js"
+  },
+  "types": "./lib/container.d.ts",
+  "files": [
+    "/lib",
+    "!/lib/**/*.js.map",
+    "!/lib/*.js.map"
+  ],
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brendangooch/container.git"
+  },
+  "homepage": "https://github.com/brendangooch/container#readme",
+  "bugs": {
+    "url": "https://github.com/brendangooch/container/issues",
+    "email": "brendangooch@gmail.com"
+  },
+  "keywords": [
+    "div",
+    "container",
+    "fixed-aspect"
+  ]
+}
