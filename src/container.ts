@@ -107,8 +107,6 @@ export default class Container {
     private makeDiv(element?: HTMLDivElement, id?: string): HTMLDivElement {
         let div: HTMLDivElement;
         if (element) div = element;
-        else if (document.getElementById('container') && document.getElementById('contaienr')?.nodeName === 'DIV')
-            div = <HTMLDivElement>document.getElementById('container');
         else if (id && document.getElementById(id) && document.getElementById(id)?.nodeName === 'DIV')
             div = <HTMLDivElement>document.getElementById(id);
         else div = document.createElement('div');
