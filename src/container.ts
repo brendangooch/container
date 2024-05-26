@@ -48,8 +48,12 @@ export default class Container {
         this.updateAvailableSpace();
         if (this.isPortrait()) this.resizePortrait();
         else this.resizeLandscape();
+
+
         this.applyMargin();
+
         this.updateDOM();
+
     }
 
     private resizePortrait(): void {
@@ -78,9 +82,17 @@ export default class Container {
         this.height.current = height;
     }
 
+
     private applyMargin(): void {
-        this.width.current *= 1 - this.margin;
-        this.height.current *= 1 - this.margin;
+        if (this.marginRequired()) {
+            this.width.current *= 1 - this.margin;
+            this.height.current *= 1 - this.margin;
+        }
+    }
+
+    // only apply margin if container has been scaled to less than full size
+    private marginRequired(): boolean {
+        return this.width.current < this.width.target;
     }
 
     private updateDOM(): void {
@@ -113,6 +125,9 @@ export default class Container {
         this.outerDiv.id = 'container';
         this.outerDiv.style.width = '100vw';
         this.outerDiv.style.height = '100vh';
+        this.outerDiv.style.display = 'flex';
+        this.outerDiv.style.justifyContent = 'center';
+        this.outerDiv.style.alignItems = 'center';
     }
 
 }
