@@ -2,11 +2,12 @@
  * 
  */
 
-import AspectRatio from "./aspect-ratio.js";
-
-// import AspectRatio from "./aspect-ratio.js";
+import { AspectRatio } from "@brendangooch/maths";
 
 export default class Container {
+
+    private static DEFAULT_HTML_ID: string = "container";
+    private static DEFAULT_MARGIN: number = 0.05;
 
     private div: HTMLDivElement; // the div that resizes and contains other fixed aspect elements
     private width = { target: 0, available: 0, current: 0 };
@@ -14,29 +15,17 @@ export default class Container {
     private margin = 0.05;
     private aspect: AspectRatio;
 
-    public constructor(atts: {
-        width: number;
-        height: number;
-        margin?: number;
-        id?: string;
-        element?: HTMLDivElement;
-        parent?: HTMLElement;
-    }) {
-        this.loadWidth(atts.width, atts.height);
-        if (atts.margin) this.margin = atts.margin;
-        this.aspect = new AspectRatio(atts.width, atts.height);
-        this.div = this.makeDiv(atts.element, atts.id);
-        if (atts.parent) this.appendTo(atts.parent);
-        window.onresize = this.resize.bind(this);
-        this.resize();
-    }
-
-    public appendTo(parent: HTMLElement): void {
-        parent.appendChild(this.div);
-    }
-
-    public append(child: HTMLElement): void {
-        this.div.appendChild(child);
+    public constructor(width: number, height: number, id?: string, margin?: number) {
+        this.width.target = width;
+        this.height.target = height;
+        this.aspect = new AspectRatio(width, height);
+        if (id) this.div = <HTMLDivElement>document.getElementById(id);
+        else this.div = <HTMLDivElement>document.getElementById(Container.DEFAULT_HTML_ID);
+        this.margin = (margin) ? margin : Container.DEFAULT_MARGIN;
+        if (this.div) {
+            window.onresize = this.resize.bind(this);
+            this.resize();
+        }
     }
 
     private resize(): void {
@@ -97,21 +86,6 @@ export default class Container {
     private updateAvailableSpace(): void {
         this.width.available = window.innerWidth;
         this.height.available = window.innerHeight;
-    }
-
-    private loadWidth(width: number, height: number): void {
-        this.width.target = width;
-        this.height.target = height;
-    }
-
-    private makeDiv(element?: HTMLDivElement, id?: string): HTMLDivElement {
-        let div: HTMLDivElement;
-        if (element) div = element;
-        else if (id && document.getElementById(id) && document.getElementById(id)?.nodeName === 'DIV')
-            div = <HTMLDivElement>document.getElementById(id);
-        else div = document.createElement('div');
-        div.id = 'container';
-        return div;
     }
 
 }
