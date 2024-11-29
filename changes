@@ -1,0 +1,20 @@
+...
+
+v2.0.0
+    moved AspectRatio to Maths library
+    added default html id = container
+    added default margin = 0.05
+    tidied up constructor
+    removed optional parent and element params
+    removed append() and appendTo() methods
+    removed a couple of private methods no longer needed
+    container doesn't load if no div with id="container" and no custom id provided
+
+
+v3.0.0
+    no longer exports default class
+    constructor syntax now similar to canvas and user input
+    added setMargin() as separate public method
+    throws error if no div with id container/passed in id param present in html document
+    updated tsconfig to latest template
+    added index.ts barrel file

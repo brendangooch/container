@@ -1,6 +1,6 @@
 {
   "name": "@brendangooch/container",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "a simple 'container' div that resizes on screen resize or rotate and maintains its aspect ratio",
   "author": "B Gooch <brendangooch@gmail.com>",
   "license": "MIT",
